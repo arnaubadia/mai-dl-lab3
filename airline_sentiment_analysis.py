@@ -73,11 +73,11 @@ test_indices = indices[int(0.9*len(x)):]
 # that it is limited by 140 characters.
 
 tokenizer = Tokenizer()
-tokenizer.fit_on_texts(x[train_indices])
-# tokenizer.fit_on_texts(x)
+#tokenizer.fit_on_texts(x[train_indices])
+tokenizer.fit_on_texts(x)
 word_index = tokenizer.word_index
-max_length = max([len(s.split()) for s in x[train_indices]])
-# max_length = max([len(s.split()) for s in x])
+# max_length = max([len(s.split()) for s in x[train_indices]])
+max_length = max([len(s.split()) for s in x])
 vocabulary_size = len(tokenizer.word_index) + 1
 x = tokenizer.texts_to_sequences(x)
 x = pad_sequences(x, maxlen=max_length, padding='post')
@@ -90,9 +90,9 @@ x_test = x[test_indices]
 y_test = labels[test_indices]
 
 # read pretrained embeddings into dict
-train_embedding(tweets)
-embedding_path = 'airline_tweets_embedding.txt'
-# embedding_path = 'glove.twitter.27B/glove.twitter.27B.100d.txt'
+# train_embedding(tweets)
+# embedding_path = 'airline_tweets_embedding.txt'
+embedding_path = 'glove.twitter.27B/glove.twitter.27B.100d.txt'
 # embedding_path = 'glove.42B.300d.txt'
 embeddings_index = {}
 f = open(embedding_path, encoding='utf-8')
